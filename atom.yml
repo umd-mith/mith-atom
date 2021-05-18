@@ -2,11 +2,11 @@
 - name: setup MITH AtoM instance
   hosts: atom
 
-  pre_tasks:
-
-    - include_vars: "vars.yml"
-      tags:
-        - "always"
+#  pre_tasks:
+#
+#    - include_vars: "group_vars/all/vars.yml"
+#    tags:
+#        - "always"
 
   roles:
 
