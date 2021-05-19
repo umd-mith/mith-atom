@@ -28,9 +28,13 @@ Then you can encrypt your passwords with
 ## Provisioning
 
 Prior to running the playbook you will need to provision an instance of Ubuntu
-and put the hostname in the `hosts` file. You will also want to update the
-`hostname` variable in `group_vars/atom/vars.yml` to point to your new
-hostname. Currently it is set to `atom.mith.us`.
+and put the hostname in the `hosts` file. MITH currently use an AWS `t3.large`
+instance with 100GB of disk running Ubuntu 20.04 (Focal Fossa). Be sure to
+choose an Intel based processor rather than ARM since Percona does not install
+correctly on ARM.
+
+You may want to update the `hostname` variable in `group_vars/atom/vars.yml` to
+point to your new hostname. Currently it is set to `atom.mith.us`.
 
 Once the host is up and the DNS record is available you can run the playbook.
 DNS resolution is needed because the playbook will use LetsEncrypt to request
@@ -53,7 +57,7 @@ initialize the database:
     ansible-playbook atom.yml --extra-vars "atom_auto_init=yes"
 
 Artefactual recommend that subsequent runs of the playbook should not pass the
-atom-auto_init variable:
+`atom-auto_init` variable, so you can just run it this way afterwards:
 
     ansible-playbook atom.yml
 
