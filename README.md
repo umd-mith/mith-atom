@@ -4,6 +4,10 @@ This Ansible playbook is used to setup MITH's
 [AtoM](https://www.accesstomemory.org/en/) instance. It was adapted from
 Artefactual's playbook at https://github.com/artefactual/deploy-pub
 
+To get started you will need to clone this repository:
+
+    git clone https://github.com/umd-mith/mith-atom.git
+
 ## Passwords
 
 Someone in MITH (Ed Summers?) will be able to provide you with the Ansible
