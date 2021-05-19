@@ -1,0 +1,4 @@
+- name: certbot renew
+  service:
+    name: renew
+    state: restarted

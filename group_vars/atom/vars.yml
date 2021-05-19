@@ -26,6 +26,8 @@ atom_csrf_protection: "yes"
 # nginx role
 #
 
+hostname: "atom.mith.us"
+
 nginx_configs:
   atom_backend:
     - upstream atom {
@@ -34,10 +36,16 @@ nginx_configs:
 
 nginx_sites:
   atom:
-    - listen 80
+    - listen 443
+    - server_name {{ hostname }} 
+    - ssl on
+    - ssl_certificate /etc/letsencrypt/live/atom.mith.us/fullchain.pem
+    - ssl_certificate_key /etc/letsencrypt/live/atom.mith.us/privkey.pem
+    - ssl_protocols TLSv1 TLSv1.1 TLSv1.2
+    - ssl_ciphers HIGH:!aNULL:!MD5
+
     - set $atom_path {{ atom_path }}
     - root $atom_path
-    - server_name _
     - client_max_body_size 72M
     - location / { try_files $uri /index.php?$args; }
     - location ~ /\. {
@@ -74,6 +82,11 @@ nginx_sites:
         deny all;
         return 404;
       }
+
+  atom_http:
+    - listen 80
+    - server_name {{ hostname }}
+    - return 301 https://$host$request_uri
 
 # elasticsearch role
 

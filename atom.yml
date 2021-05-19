@@ -2,12 +2,6 @@
 - name: setup MITH AtoM instance
   hosts: atom
 
-#  pre_tasks:
-#
-#    - include_vars: "group_vars/all/vars.yml"
-#    tags:
-#        - "always"
-
   roles:
 
     - role: "artefactual.elasticsearch"
@@ -39,3 +33,6 @@
       become: "yes"
       tags:
         - "atom"
+
+    - role: "letsencrypt"
+      become: "yes"

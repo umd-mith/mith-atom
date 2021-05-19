@@ -1,0 +1,32 @@
+---
+
+- name: uninstall apt certbot if present
+  apt:
+    name: certbot
+    state: absent
+
+- name: snap install certbot
+  community.general.snap:
+    name: certbot
+    classic: yes
+
+- name: link snap command
+  file:
+    state: link
+    src: /snap/bin/certbot
+    dest: /usr/bin/certbot
+
+- name: have certificates been requested already?
+  stat: path=/etc/letsencrypt/live/{{ hostname }}
+  register: certificates
+
+- name: request certificates
+  when: certificates.stat.exists == False
+  shell: "/usr/bin/certbot --nginx --non-interactive --agree-tos --redirect --email {{ atom_user_email }} --expand --domains {{ hostname }}"
+
+- cron: 
+    name: certbot renew
+    minute: "35"
+    hour: "19"
+    job: "/usr/bin/certbot renew --quiet"
+
