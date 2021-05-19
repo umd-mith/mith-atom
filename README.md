@@ -14,9 +14,10 @@ Someone in MITH (Ed Summers?) will be able to provide you with the Ansible
 vault password which allows you to decrypt needed passwords. Put a copy of the
 password in a file named `vault.txt`.
 
-If you are adapting this playbook for other purposes you will want to save your
-own password in `vault.txt` and then overwrite the contents of
-`group_vars/atom/vault.yml` so that it contains (after changing the passwords):
+If you aren't MITH and would like to adapt this playbook for your own purposes
+you will want to save your own password in `vault.txt` and then overwrite the
+contents of `group_vars/atom/vault.yml` so that it contains (after changing
+CHANGME to suitable passwords):
 
 ```yaml
 atom_config_db_password: "CHANGME" 
