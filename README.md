@@ -56,7 +56,7 @@ Then install the Ansible roles that are needed:
     ansible-galaxy install -r requirements.yml
 
 The first time you run the playbook against a host you need to tell the
-[ansible-atom](https://github.com/artefactual/ansible-atom) playbook to
+[ansible-atom](https://github.com/artefactual-labs/ansible-atom) playbook to
 initialize the database:
 
     ansible-playbook atom.yml --extra-vars "atom_auto_init=yes"
