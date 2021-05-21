@@ -24,6 +24,9 @@
       tags:
         - "gearman"
 
+    - role: "letsencrypt"
+      become: "yes"
+
     - role: "artefactual.nginx"
       become: "yes"
       tags:
@@ -33,6 +36,3 @@
       become: "yes"
       tags:
         - "atom"
-
-    - role: "letsencrypt"
-      become: "yes"

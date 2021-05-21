@@ -22,7 +22,7 @@
 
 - name: request certificates
   when: certificates.stat.exists == False
-  shell: "/usr/bin/certbot --nginx --non-interactive --agree-tos --redirect --email {{ atom_user_email }} --expand --domains {{ hostname }}"
+  shell: "/usr/bin/certbot certonly --standalone --non-interactive --agree-tos --redirect --email {{ atom_user_email }} --expand --domains {{ hostname }}"
 
 - cron: 
     name: certbot renew
